@@ -1,0 +1,804 @@
+<!DOCTYPE html>
+<html lang="hi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="श्री हनुमान चालीसा - Shri Hanuman Chalisa in Hindi with English translation, print-ready A4 format">
+    <meta name="keywords" content="Hanuman Chalisa, हनुमान चालीसा, Hindu prayer, printable">
+    <title>श्री हनुमान चालीसा</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Tiro+Devanagari+Hindi:ital@0;1&family=Noto+Sans+Devanagari:wght@400;500;600;700&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html,
+        body {
+            margin: 0;
+            padding: 0;
+        }
+
+        :root {
+            --primary-color: #b8860b;
+            --secondary-color: #8b0000;
+            --text-color: #2c1810;
+            --bg-cream: #fffaf5;
+            --border-color: #d4a574;
+            --accent: #ff6b35;
+        }
+
+        body {
+            font-family: 'Noto Sans Devanagari', 'Tiro Devanagari Hindi', serif;
+            background: #f0f0f0;
+            color: var(--text-color);
+            line-height: 1.6;
+            font-size: 16px;
+        }
+
+        /* ===== PAGE CONTAINER ===== */
+        .page {
+            width: 210mm;
+            height: 297mm;
+            background: white;
+            margin: 10px auto;
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* ===== DECORATIVE BORDER ===== */
+        .border-outer {
+            position: absolute;
+            top: 8mm;
+            left: 8mm;
+            right: 8mm;
+            bottom: 8mm;
+            border: 2.5px solid var(--primary-color);
+            border-radius: 4px;
+        }
+
+        .border-inner {
+            position: absolute;
+            top: 10mm;
+            left: 10mm;
+            right: 10mm;
+            bottom: 10mm;
+            border: 1px solid var(--border-color);
+            border-radius: 3px;
+        }
+
+        /* ===== CONTENT AREA ===== */
+        .content {
+            position: absolute;
+            top: 15mm;
+            left: 15mm;
+            right: 15mm;
+            bottom: 18mm;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* ===== HEADER ===== */
+        .header {
+            text-align: center;
+            padding-bottom: 4mm;
+            border-bottom: 2px solid var(--primary-color);
+            margin-bottom: 5mm;
+            flex-shrink: 0;
+        }
+
+        .header-mini {
+            padding-bottom: 3mm;
+            margin-bottom: 4mm;
+        }
+
+        .om-symbol {
+            font-size: 32px;
+            color: var(--accent);
+            margin-bottom: 2mm;
+        }
+
+        .title {
+            font-size: 26px;
+            font-weight: 700;
+            color: var(--secondary-color);
+            letter-spacing: 1.5px;
+            margin-bottom: 2mm;
+        }
+
+        .title-small {
+            font-size: 20px;
+        }
+
+        .subtitle {
+            font-size: 13px;
+            color: var(--primary-color);
+            font-style: italic;
+            display: none;
+        }
+
+        body.show-english .subtitle {
+            display: block;
+        }
+
+        /* ===== SECTION ===== */
+        .section-title {
+            font-size: 15px;
+            font-weight: 600;
+            color: var(--primary-color);
+            text-align: center;
+            margin-bottom: 3mm;
+        }
+
+        /* ===== DOHA ===== */
+        .doha {
+            background: linear-gradient(135deg, #fff8f0 0%, #ffe4c4 100%);
+            border-left: 4px solid var(--accent);
+            border-right: 4px solid var(--accent);
+            padding: 4mm 5mm;
+            margin: 3mm auto;
+            border-radius: 5px;
+            font-size: 16px;
+            font-weight: 500;
+            text-align: center;
+            max-width: 95%;
+            line-height: 1.8;
+        }
+
+        /* ===== CHAUPAI ===== */
+        .verses {
+            flex: 1;
+            background: var(--bg-cream);
+            border-radius: 5px;
+            padding: 3mm 4mm;
+            page-break-inside: avoid;
+        }
+
+        .chaupai {
+            text-align: center;
+            padding: 2.5mm 0;
+            font-size: 15px;
+            line-height: 1.8;
+        }
+
+        .verse-line {
+            display: block;
+            margin: 1mm 0;
+        }
+
+        .verse-number {
+            display: inline-block;
+            width: 22px;
+            height: 22px;
+            background: var(--primary-color);
+            color: white;
+            border-radius: 50%;
+            text-align: center;
+            font-size: 12px;
+            line-height: 22px;
+            margin-bottom: 2mm;
+            font-weight: 600;
+        }
+
+        /* ===== ENGLISH ===== */
+        .english {
+            display: none;
+            font-family: Georgia, serif;
+            font-size: 12px;
+            color: #555;
+            font-style: italic;
+            margin-top: 2mm;
+            border-top: 1px dashed var(--border-color);
+            padding-top: 2mm;
+            line-height: 1.5;
+        }
+
+        body.show-english .english {
+            display: block;
+        }
+
+        body.show-english .chaupai {
+            padding: 3mm 0;
+        }
+
+        /* ===== DIVIDER ===== */
+        .divider {
+            text-align: center;
+            margin: 3mm 0;
+            color: var(--accent);
+            font-size: 16px;
+        }
+
+        /* ===== PAGE NUMBER ===== */
+        .page-number {
+            position: absolute;
+            bottom: 12mm;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 13px;
+            color: var(--primary-color);
+            font-weight: 600;
+        }
+
+        /* ===== FOOTER ===== */
+        .footer {
+            text-align: center;
+            padding-top: 4mm;
+            border-top: 2px solid var(--border-color);
+            font-size: 13px;
+            color: var(--primary-color);
+            margin-top: auto;
+        }
+
+        /* ===== CONTROLS ===== */
+        .controls {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: white;
+            padding: 15px;
+            border-radius: 10px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+            z-index: 1000;
+        }
+
+        .controls button {
+            background: var(--secondary-color);
+            color: white;
+            border: none;
+            padding: 10px 16px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 13px;
+            font-weight: 600;
+            margin: 4px 0;
+            display: block;
+            width: 100%;
+            transition: all 0.3s;
+        }
+
+        .controls button:hover {
+            background: var(--primary-color);
+            transform: translateY(-2px);
+        }
+
+        .controls button.toggle-btn {
+            background: var(--primary-color);
+        }
+
+        .controls button.toggle-btn.active {
+            background: #228b22;
+        }
+
+        .controls p {
+            font-size: 10px;
+            color: #666;
+            margin-top: 8px;
+            text-align: center;
+        }
+
+        /* ===== PRINT STYLES ===== */
+        @media print {
+            @page {
+                size: A4 portrait;
+                margin: 0mm;
+            }
+
+            * {
+                -webkit-print-color-adjust: exact !important;
+                print-color-adjust: exact !important;
+                color-adjust: exact !important;
+                box-sizing: border-box;
+            }
+
+            html {
+                width: 210mm;
+                height: 297mm;
+                margin: 0;
+                padding: 0;
+            }
+
+            body {
+                width: 210mm;
+                height: 297mm;
+                margin: 0 !important;
+                padding: 0 !important;
+                background: white !important;
+                overflow: visible;
+            }
+
+            .controls {
+                display: none !important;
+            }
+
+            .page {
+                width: 210mm !important;
+                height: 297mm !important;
+                margin: 0 !important;
+                padding: 0 !important;
+                background: white;
+                page-break-after: always;
+                page-break-inside: avoid;
+                position: relative;
+                display: block;
+                float: none;
+                box-shadow: none !important;
+            }
+
+            .page:last-child {
+                page-break-after: auto;
+            }
+
+            .border-outer {
+                position: absolute !important;
+                top: 8mm !important;
+                left: 8mm !important;
+                right: 8mm !important;
+                bottom: 8mm !important;
+            }
+
+            .border-inner {
+                position: absolute !important;
+                top: 10mm !important;
+                left: 10mm !important;
+                right: 10mm !important;
+                bottom: 10mm !important;
+            }
+
+            .content {
+                position: absolute !important;
+                top: 15mm !important;
+                left: 15mm !important;
+                right: 15mm !important;
+                bottom: 18mm !important;
+            }
+
+            .doha,
+            .verses {
+                -webkit-print-color-adjust: exact !important;
+                print-color-adjust: exact !important;
+            }
+
+            /* Increase font sizes slightly for print */
+            .chaupai {
+                font-size: 16px !important;
+            }
+
+            .doha {
+                font-size: 17px !important;
+            }
+
+            .english {
+                font-size: 13px !important;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Controls -->
+    <div class="controls">
+        <button onclick="window.print()">🖨️ प्रिंट / PDF</button>
+        <button class="toggle-btn" onclick="toggleEnglish(this)">📖 English अर्थ</button>
+        <p>A4 पेपर पर प्रिंट करें</p>
+    </div>
+
+    <!-- PAGE 1: Dohas + Chaupai 1-7 -->
+    <div class="page">
+        <div class="border-outer"></div>
+        <div class="border-inner"></div>
+        <div class="content">
+            <div class="header">
+                <div class="om-symbol">ॐ</div>
+                <h1 class="title">॥ श्री हनुमान चालीसा ॥</h1>
+                <p class="subtitle">Shri Hanuman Chalisa</p>
+            </div>
+
+            <div class="section-title">॥ दोहा ॥</div>
+            <div class="doha">
+                <span class="verse-line">श्रीगुरु चरन सरोज रज, निज मनु मुकुरु सुधारि।</span>
+                <span class="verse-line">बरनउँ रघुबर बिमल जसु, जो दायकु फल चारि॥</span>
+                <div class="english">After cleansing the mirror of my mind with the dust of my Guru's lotus feet, I
+                    narrate the pure glory of Raghuvir, which bestows the four fruits of life.</div>
+            </div>
+            <div class="doha">
+                <span class="verse-line">बुद्धिहीन तनु जानिके, सुमिरौं पवन-कुमार।</span>
+                <span class="verse-line">बल बुद्धि विद्या देहु मोहिं, हरहु कलेस विकार॥</span>
+                <div class="english">Knowing myself to be ignorant, I remember the Son of Wind. Grant me strength,
+                    wisdom, and knowledge, and remove my afflictions and blemishes.</div>
+            </div>
+
+            <div class="divider">❀ ❀ ❀</div>
+            <div class="section-title">॥ चौपाई ॥</div>
+
+            <div class="verses">
+                <div class="chaupai">
+                    <span class="verse-number">1</span>
+                    <span class="verse-line">जय हनुमान ज्ञान गुन सागर।</span>
+                    <span class="verse-line">जय कपीस तिहुँ लोक उजागर॥</span>
+                    <div class="english">Glory to Hanuman, the ocean of wisdom and virtue. Glory to the Lord of monkeys,
+                        illuminator of the three worlds.</div>
+                </div>
+                <div class="chaupai">
+                    <span class="verse-number">2</span>
+                    <span class="verse-line">राम दूत अतुलित बल धामा।</span>
+                    <span class="verse-line">अंजनि-पुत्र पवनसुत नामा॥</span>
+                    <div class="english">You are the messenger of Ram, the abode of incomparable strength. You are known
+                        as Anjani's son and the Son of the Wind.</div>
+                </div>
+                <div class="chaupai">
+                    <span class="verse-number">3</span>
+                    <span class="verse-line">महाबीर बिक्रम बजरंगी।</span>
+                    <span class="verse-line">कुमति निवार सुमति के संगी॥</span>
+                    <div class="english">Great hero with a body as strong as a thunderbolt. You dispel evil thoughts and
+                        are a companion of good sense.</div>
+                </div>
+                <div class="chaupai">
+                    <span class="verse-number">4</span>
+                    <span class="verse-line">कंचन बरन बिराज सुबेसा।</span>
+                    <span class="verse-line">कानन कुंडल कुँचित केसा॥</span>
+                    <div class="english">Your complexion is golden and you are adorned beautifully. You wear earrings
+                        and have curly hair.</div>
+                </div>
+                <div class="chaupai">
+                    <span class="verse-number">5</span>
+                    <span class="verse-line">हाथ बज्र औ ध्वजा बिराजै।</span>
+                    <span class="verse-line">काँधे मूँज जनेऊ साजै॥</span>
+                    <div class="english">You hold a thunderbolt and a flag in your hands. A sacred thread of munja grass
+                        adorns your shoulder.</div>
+                </div>
+                <div class="chaupai">
+                    <span class="verse-number">6</span>
+                    <span class="verse-line">संकर सुवन केसरीनंदन।</span>
+                    <span class="verse-line">तेज प्रताप महा जग बंदन॥</span>
+                    <div class="english">You are the incarnation of Shiva and the son of Kesari. Your glory and might
+                        are revered throughout the world.</div>
+                </div>
+                <div class="chaupai">
+                    <span class="verse-number">7</span>
+                    <span class="verse-line">विद्यावान गुनी अति चातुर।</span>
+                    <span class="verse-line">राम काज करिबे को आतुर॥</span>
+                    <div class="english">You are learned, virtuous, and extremely clever. You are ever eager to do the
+                        work of Lord Ram.</div>
+                </div>
+            </div>
+        </div>
+        <div class="page-number">- १ -</div>
+    </div>
+
+    <!-- PAGE 2: Chaupai 8-16 -->
+    <div class="page">
+        <div class="border-outer"></div>
+        <div class="border-inner"></div>
+        <div class="content">
+            <div class="header header-mini">
+                <h1 class="title title-small">॥ श्री हनुमान चालीसा ॥</h1>
+            </div>
+
+            <div class="verses">
+                <div class="chaupai">
+                    <span class="verse-number">8</span>
+                    <span class="verse-line">प्रभु चरित्र सुनिबे को रसिया।</span>
+                    <span class="verse-line">राम लखन सीता मन बसिया॥</span>
+                    <div class="english">You delight in listening to the Lord's deeds. Ram, Lakshman, and Sita dwell in
+                        your heart.</div>
+                </div>
+                <div class="chaupai">
+                    <span class="verse-number">9</span>
+                    <span class="verse-line">सूक्ष्म रूप धरि सियहिं दिखावा।</span>
+                    <span class="verse-line">बिकट रूप धरि लंक जरावा॥</span>
+                    <div class="english">Assuming a tiny form, you appeared before Sita. Assuming a fierce form, you
+                        burned Lanka.</div>
+                </div>
+                <div class="chaupai">
+                    <span class="verse-number">10</span>
+                    <span class="verse-line">भीम रूप धरि असुर सँहारे।</span>
+                    <span class="verse-line">रामचंद्र के काज सँवारे॥</span>
+                    <div class="english">Taking a terrifying form, you destroyed the demons. You accomplished all the
+                        tasks of Lord Ramchandra.</div>
+                </div>
+                <div class="chaupai">
+                    <span class="verse-number">11</span>
+                    <span class="verse-line">लाय सजीवन लखन जियाये।</span>
+                    <span class="verse-line">श्रीरघुबीर हरषि उर लाये॥</span>
+                    <div class="english">You brought the Sanjeevani herb and revived Lakshman. Shri Raghuvir embraced
+                        you with joy.</div>
+                </div>
+                <div class="chaupai">
+                    <span class="verse-number">12</span>
+                    <span class="verse-line">रघुपति कीन्ही बहुत बड़ाई।</span>
+                    <span class="verse-line">तुम मम प्रिय भरतहि सम भाई॥</span>
+                    <div class="english">Lord Raghupati praised you greatly, saying: "You are as dear to me as my
+                        brother Bharat."</div>
+                </div>
+                <div class="chaupai">
+                    <span class="verse-number">13</span>
+                    <span class="verse-line">सहस बदन तुम्हरो जस गावैं।</span>
+                    <span class="verse-line">अस कहि श्रीपति कंठ लगावैं॥</span>
+                    <div class="english">"May the thousand-headed Shesha sing your glory." Saying this, Lord Vishnu
+                        embraced you.</div>
+                </div>
+                <div class="chaupai">
+                    <span class="verse-number">14</span>
+                    <span class="verse-line">सनकादिक ब्रह्मादि मुनीसा।</span>
+                    <span class="verse-line">नारद सारद सहित अहीसा॥</span>
+                    <div class="english">Sanak and other sages, Brahma and other gods, Narad, Saraswati, and the King of
+                        Serpents...</div>
+                </div>
+                <div class="chaupai">
+                    <span class="verse-number">15</span>
+                    <span class="verse-line">जम कुबेर दिगपाल जहाँ ते।</span>
+                    <span class="verse-line">कबि कोबिद कहि सके कहाँ ते॥</span>
+                    <div class="english">Yama, Kubera, and the guardians of directions—even poets and scholars cannot
+                        fully describe your glory.</div>
+                </div>
+                <div class="chaupai">
+                    <span class="verse-number">16</span>
+                    <span class="verse-line">तुम उपकार सुग्रीवहिं कीन्हा।</span>
+                    <span class="verse-line">राम मिलाय राज पद दीन्हा॥</span>
+                    <div class="english">You helped Sugriva by introducing him to Ram, and thus gave him his kingdom.
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="page-number">- २ -</div>
+    </div>
+
+    <!-- PAGE 3: Chaupai 17-25 -->
+    <div class="page">
+        <div class="border-outer"></div>
+        <div class="border-inner"></div>
+        <div class="content">
+            <div class="header header-mini">
+                <h1 class="title title-small">॥ श्री हनुमान चालीसा ॥</h1>
+            </div>
+
+            <div class="verses">
+                <div class="chaupai">
+                    <span class="verse-number">17</span>
+                    <span class="verse-line">तुम्हरो मंत्र विभीषन माना।</span>
+                    <span class="verse-line">लंकेश्वर भए सब जग जाना॥</span>
+                    <div class="english">Vibhishan accepted your counsel and became the King of Lanka—the whole world
+                        knows this.</div>
+                </div>
+                <div class="chaupai">
+                    <span class="verse-number">18</span>
+                    <span class="verse-line">जुग सहस्र जोजन पर भानू।</span>
+                    <span class="verse-line">लील्यो ताहि मधुर फल जानू॥</span>
+                    <div class="english">The sun, millions of miles away, you swallowed thinking it to be a sweet fruit.
+                    </div>
+                </div>
+                <div class="chaupai">
+                    <span class="verse-number">19</span>
+                    <span class="verse-line">प्रभु मुद्रिका मेलि मुख माहीं।</span>
+                    <span class="verse-line">जलधि लाँघि गये अचरज नाहीं॥</span>
+                    <div class="english">Carrying the Lord's ring in your mouth, you leaped across the ocean—no wonder!
+                    </div>
+                </div>
+                <div class="chaupai">
+                    <span class="verse-number">20</span>
+                    <span class="verse-line">दुर्गम काज जगत के जेते।</span>
+                    <span class="verse-line">सुगम अनुग्रह तुम्हरे तेते॥</span>
+                    <div class="english">All difficult tasks in this world become easy with your grace.</div>
+                </div>
+                <div class="chaupai">
+                    <span class="verse-number">21</span>
+                    <span class="verse-line">राम दुआरे तुम रखवारे।</span>
+                    <span class="verse-line">होत न आज्ञा बिनु पैसारे॥</span>
+                    <div class="english">You are the guardian at Ram's door. No one can enter without your permission.
+                    </div>
+                </div>
+                <div class="chaupai">
+                    <span class="verse-number">22</span>
+                    <span class="verse-line">सब सुख लहै तुम्हारी सरना।</span>
+                    <span class="verse-line">तुम रक्षक काहू को डर ना॥</span>
+                    <div class="english">Those who take refuge in you find all happiness. With you as protector, there
+                        is no fear.</div>
+                </div>
+                <div class="chaupai">
+                    <span class="verse-number">23</span>
+                    <span class="verse-line">आपन तेज सम्हारो आपै।</span>
+                    <span class="verse-line">तीनों लोक हाँक तें काँपै॥</span>
+                    <div class="english">You alone can control your own radiance. The three worlds tremble at your roar.
+                    </div>
+                </div>
+                <div class="chaupai">
+                    <span class="verse-number">24</span>
+                    <span class="verse-line">भूत पिसाच निकट नहिं आवै।</span>
+                    <span class="verse-line">महाबीर जब नाम सुनावै॥</span>
+                    <div class="english">Ghosts and evil spirits do not come near when one chants the name of Mahavir.
+                    </div>
+                </div>
+                <div class="chaupai">
+                    <span class="verse-number">25</span>
+                    <span class="verse-line">नासै रोग हरै सब पीरा।</span>
+                    <span class="verse-line">जपत निरंतर हनुमत बीरा॥</span>
+                    <div class="english">Diseases are destroyed and all pain is removed by constantly chanting brave
+                        Hanuman's name.</div>
+                </div>
+            </div>
+        </div>
+        <div class="page-number">- ३ -</div>
+    </div>
+
+    <!-- PAGE 4: Chaupai 26-34 -->
+    <div class="page">
+        <div class="border-outer"></div>
+        <div class="border-inner"></div>
+        <div class="content">
+            <div class="header header-mini">
+                <h1 class="title title-small">॥ श्री हनुमान चालीसा ॥</h1>
+            </div>
+
+            <div class="verses">
+                <div class="chaupai">
+                    <span class="verse-number">26</span>
+                    <span class="verse-line">संकट तें हनुमान छुड़ावै।</span>
+                    <span class="verse-line">मन क्रम बचन ध्यान जो लावै॥</span>
+                    <div class="english">Hanuman rescues from troubles those who meditate on him in thought, word, and
+                        deed.</div>
+                </div>
+                <div class="chaupai">
+                    <span class="verse-number">27</span>
+                    <span class="verse-line">सब पर राम तपस्वी राजा।</span>
+                    <span class="verse-line">तिन के काज सकल तुम साजा॥</span>
+                    <div class="english">Ram, the ascetic king, reigns supreme. You accomplish all his tasks.</div>
+                </div>
+                <div class="chaupai">
+                    <span class="verse-number">28</span>
+                    <span class="verse-line">और मनोरथ जो कोई लावै।</span>
+                    <span class="verse-line">सोइ अमित जीवन फल पावै॥</span>
+                    <div class="english">Whoever comes to you with any desire obtains the imperishable fruit of life.
+                    </div>
+                </div>
+                <div class="chaupai">
+                    <span class="verse-number">29</span>
+                    <span class="verse-line">चारों जुग परताप तुम्हारा।</span>
+                    <span class="verse-line">है परसिद्ध जगत उजियारा॥</span>
+                    <div class="english">Your glory extends through all four ages. Your fame illuminates the entire
+                        world.</div>
+                </div>
+                <div class="chaupai">
+                    <span class="verse-number">30</span>
+                    <span class="verse-line">साधु-संत के तुम रखवारे।</span>
+                    <span class="verse-line">असुर निकंदन राम दुलारे॥</span>
+                    <div class="english">You are the protector of saints and sages. You are the destroyer of demons and
+                        Ram's beloved.</div>
+                </div>
+                <div class="chaupai">
+                    <span class="verse-number">31</span>
+                    <span class="verse-line">अष्ट सिद्धि नौ निधि के दाता।</span>
+                    <span class="verse-line">अस बर दीन जानकी माता॥</span>
+                    <div class="english">Mother Janaki blessed you with the power to grant the eight siddhis and nine
+                        nidhis.</div>
+                </div>
+                <div class="chaupai">
+                    <span class="verse-number">32</span>
+                    <span class="verse-line">राम रसायन तुम्हरे पासा।</span>
+                    <span class="verse-line">सदा रहो रघुपति के दासा॥</span>
+                    <div class="english">You possess the elixir of Ram's devotion. May you always remain the servant of
+                        Raghupati.</div>
+                </div>
+                <div class="chaupai">
+                    <span class="verse-number">33</span>
+                    <span class="verse-line">तुम्हरे भजन राम को पावै।</span>
+                    <span class="verse-line">जनम-जनम के दुख बिसरावै॥</span>
+                    <div class="english">Through devotion to you, one attains Ram and forgets the sorrows of many
+                        lifetimes.</div>
+                </div>
+                <div class="chaupai">
+                    <span class="verse-number">34</span>
+                    <span class="verse-line">अंतकाल रघुबर पुर जाई।</span>
+                    <span class="verse-line">जहाँ जन्म हरि-भक्त कहाई॥</span>
+                    <div class="english">At the time of death, one goes to Ram's abode. And if born again, is known as a
+                        devotee of Hari.</div>
+                </div>
+            </div>
+        </div>
+        <div class="page-number">- ४ -</div>
+    </div>
+
+    <!-- PAGE 5: Chaupai 35-40 + Closing Doha -->
+    <div class="page">
+        <div class="border-outer"></div>
+        <div class="border-inner"></div>
+        <div class="content">
+            <div class="header header-mini">
+                <h1 class="title title-small">॥ श्री हनुमान चालीसा ॥</h1>
+            </div>
+
+            <div class="verses">
+                <div class="chaupai">
+                    <span class="verse-number">35</span>
+                    <span class="verse-line">और देवता चित्त न धरई।</span>
+                    <span class="verse-line">हनुमत सेइ सर्ब सुख करई॥</span>
+                    <div class="english">One need not think of any other deity. Serving Hanuman brings all happiness.
+                    </div>
+                </div>
+                <div class="chaupai">
+                    <span class="verse-number">36</span>
+                    <span class="verse-line">संकट कटै मिटै सब पीरा।</span>
+                    <span class="verse-line">जो सुमिरै हनुमत बलबीरा॥</span>
+                    <div class="english">Troubles are cut away and all pains are removed for those who remember the
+                        mighty Hanuman.</div>
+                </div>
+                <div class="chaupai">
+                    <span class="verse-number">37</span>
+                    <span class="verse-line">जै जै जै हनुमान गोसाईं।</span>
+                    <span class="verse-line">कृपा करहु गुरुदेव की नाईं॥</span>
+                    <div class="english">Victory, victory, victory to Lord Hanuman! Bestow your grace upon us as our
+                        Guru.</div>
+                </div>
+                <div class="chaupai">
+                    <span class="verse-number">38</span>
+                    <span class="verse-line">जो सत बार पाठ कर कोई।</span>
+                    <span class="verse-line">छूटहि बंदि महा सुख होई॥</span>
+                    <div class="english">One who recites this a hundred times is freed from bondage and attains great
+                        bliss.</div>
+                </div>
+                <div class="chaupai">
+                    <span class="verse-number">39</span>
+                    <span class="verse-line">जो यह पढ़ै हनुमान चालीसा।</span>
+                    <span class="verse-line">होय सिद्धि साखी गौरीसा॥</span>
+                    <div class="english">One who reads this Hanuman Chalisa gains success—Lord Shiva is witness.</div>
+                </div>
+                <div class="chaupai">
+                    <span class="verse-number">40</span>
+                    <span class="verse-line">तुलसीदास सदा हरि चेरा।</span>
+                    <span class="verse-line">कीजै नाथ हृदय महँ डेरा॥</span>
+                    <div class="english">Tulsidas, always the servant of Hari, prays: O Lord, make my heart your abode.
+                    </div>
+                </div>
+            </div>
+
+            <div class="divider" style="margin-top: 4mm;">❀ ❀ ❀</div>
+
+            <div class="section-title">॥ दोहा ॥</div>
+            <div class="doha">
+                <span class="verse-line">पवनतनय संकट हरन, मंगल मूरति रूप।</span>
+                <span class="verse-line">राम लखन सीता सहित, हृदय बसहु सुर भूप॥</span>
+                <div class="english">O Son of Wind, remover of troubles, embodiment of auspiciousness—along with Ram,
+                    Lakshman, and Sita, dwell in my heart, O King of Gods.</div>
+            </div>
+
+            <div class="footer">
+                <p style="font-size: 16px; color: var(--secondary-color); font-weight: 600;">॥ इति श्री हनुमान चालीसा ॥
+                </p>
+                <p style="margin-top: 3mm; font-size: 15px;">🙏 ॥ जय श्री राम ॥ जय हनुमान ॥ 🙏</p>
+            </div>
+        </div>
+        <div class="page-number">- ५ -</div>
+    </div>
+
+    <script>
+        // Toggle English translation
+        function toggleEnglish(btn) {
+            document.body.classList.toggle('show-english');
+            const isActive = document.body.classList.contains('show-english');
+            
+            // Save preference
+            localStorage.setItem('showEnglish', isActive);
+            
+            btn.classList.toggle('active');
+            btn.textContent = isActive ? '✓ English अर्थ (ON)' : '📖 English अर्थ';
+        }
+        
+        // Load saved preference on page load
+        window.addEventListener('DOMContentLoaded', () => {
+            const showEnglish = localStorage.getItem('showEnglish') === 'true';
+            if (showEnglish) {
+                document.body.classList.add('show-english');
+                const btn = document.querySelector('.toggle-btn');
+                btn.classList.add('active');
+                btn.textContent = '✓ English अर्थ (ON)';
+            }
+        });
+    </script>
+</body>
+
+</html>
