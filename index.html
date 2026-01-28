@@ -50,23 +50,46 @@
             overflow: hidden;
         }
 
-        /* ===== DECORATIVE BORDER ===== */
+        /* ===== CSS SQUISH (Fix for English Expansion) ===== */
+        body.show-english .chaupai {
+            padding: 1mm 0;
+            /* Reduced from 2.5mm */
+            margin-bottom: 1mm;
+        }
+
+        body.show-english .verse-line {
+            margin: 0;
+            /* Tighter lines */
+        }
+
+        body.show-english .doha {
+            padding: 2mm 3mm;
+            /* Smaller padding */
+            margin: 2mm auto;
+        }
+
+        body.show-english .header {
+            margin-bottom: 2mm;
+            /* Shrink header margin */
+        }
+
+        /* ===== DECORATIVE BORDER (Print Safe 10mm) ===== */
         .border-outer {
             position: absolute;
-            top: 8mm;
-            left: 8mm;
-            right: 8mm;
-            bottom: 8mm;
+            top: 10mm;
+            left: 10mm;
+            right: 10mm;
+            bottom: 10mm;
             border: 2.5px solid var(--primary-color);
             border-radius: 4px;
         }
 
         .border-inner {
             position: absolute;
-            top: 10mm;
-            left: 10mm;
-            right: 10mm;
-            bottom: 10mm;
+            top: 12mm;
+            left: 12mm;
+            right: 12mm;
+            bottom: 12mm;
             border: 1px solid var(--border-color);
             border-radius: 3px;
         }
@@ -282,6 +305,25 @@
             text-align: center;
         }
 
+        /* ===== MOBILE RESPONSIVENESS ===== */
+        @media screen and (max-width: 800px) {
+            body {
+                /* Scales the A4 page down to fit mobile width */
+                transform: scale(calc(100vw / 210mm));
+                transform-origin: top left;
+                width: 100vw;
+                height: auto;
+                overflow-x: hidden;
+            }
+
+            .controls {
+                /* Keep controls usable despite scaling */
+                transform: scale(1.5);
+                transform-origin: top right;
+                right: 10px;
+            }
+        }
+
         /* ===== PRINT STYLES ===== */
         @media print {
             @page {
@@ -310,6 +352,8 @@
                 padding: 0 !important;
                 background: white !important;
                 overflow: visible;
+                transform: none !important;
+                /* Disable scaling for print */
             }
 
             .controls {
@@ -336,18 +380,18 @@
 
             .border-outer {
                 position: absolute !important;
-                top: 8mm !important;
-                left: 8mm !important;
-                right: 8mm !important;
-                bottom: 8mm !important;
-            }
-
-            .border-inner {
-                position: absolute !important;
                 top: 10mm !important;
                 left: 10mm !important;
                 right: 10mm !important;
                 bottom: 10mm !important;
+            }
+
+            .border-inner {
+                position: absolute !important;
+                top: 12mm !important;
+                left: 12mm !important;
+                right: 12mm !important;
+                bottom: 12mm !important;
             }
 
             .content {
@@ -780,14 +824,14 @@
         function toggleEnglish(btn) {
             document.body.classList.toggle('show-english');
             const isActive = document.body.classList.contains('show-english');
-            
+
             // Save preference
             localStorage.setItem('showEnglish', isActive);
-            
+
             btn.classList.toggle('active');
             btn.textContent = isActive ? '✓ English अर्थ (ON)' : '📖 English अर्थ';
         }
-        
+
         // Load saved preference on page load
         window.addEventListener('DOMContentLoaded', () => {
             const showEnglish = localStorage.getItem('showEnglish') === 'true';
